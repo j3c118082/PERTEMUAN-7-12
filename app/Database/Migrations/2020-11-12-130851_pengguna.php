@@ -1,0 +1,32 @@
+<?php namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class Pengguna extends Migration
+{
+	private $table='pengguna';
+
+	public function up()
+	{
+		$this->forge->addField([
+			'username'          => [				// nama kolom
+					'type'           => 'VARCHAR',
+					'constraint'     => 100,
+			],
+			'password'       => [
+					'type'           => 'TEXT',
+			],
+
+		]);
+
+			$this->forge->addKey('username', true); // maksudnya ini primary key
+			$this->forge->createTable($this->table);
+	}
+
+	//--------------------------------------------------------------------
+
+	public function down()
+	{
+		$this->forge->dropTable($this->table);
+	}
+}
